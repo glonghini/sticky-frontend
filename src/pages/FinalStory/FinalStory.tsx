@@ -17,6 +17,11 @@ export const FinalStory: React.FC = () => {
 
   return <Grid container spacing={2}>
     <Grid size={12}>
+      <Button onClick={resetApp} variant="contained" color="primary" size="large" sx={{ mt: 4 }}>
+        Create a New Story
+      </Button>
+    </Grid>
+    <Grid size={12}>
       <Typography variant="h5" gutterBottom>Your Final Story!</Typography>
     </Grid>
     {
@@ -41,8 +46,5 @@ export const FinalStory: React.FC = () => {
         </Card>
       </Grid>)
     }
-    <Button onClick={resetApp} variant="contained" color="primary" size="large" sx={{ mt: 4 }}>
-      Create a New Story
-    </Button>
   </Grid>
-};
+}
