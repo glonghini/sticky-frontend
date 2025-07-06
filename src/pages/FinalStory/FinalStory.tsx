@@ -20,7 +20,7 @@ export const FinalStory: React.FC = () => {
       <Typography variant="h5" gutterBottom>Your Final Story!</Typography>
     </Grid>
     {
-      finalStoryData.currentStoryState.map((scene) => <Grid size={4}>
+      finalStoryData.currentStoryState.map((scene, index) => <Grid size={4} key={index}>
         <Card key={scene.id}>
           <CardMedia
             component="img"
