@@ -1,69 +1,41 @@
-# React + TypeScript + Vite
+# AI Story Studio - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Installation guide:
+## To run locally:
+1. Make sure you have installed Node version 22 or higher
+2. run `git pull https://github.com/glonghini/sticky-frontend.git`, `cd sticky-frontend` and `npm i`
+3. run `npm run dev` to run the app. It should be running at localhost:5173 or 127.0.0.1:5173 
 
-Currently, two official plugins are available:
+This is the frontend for the AI Story Studio, a web application built with React, Vite, and TypeScript. It provides a user-friendly interface for interacting with the AI-powered backend to create, refine, and visualize stories.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The application is structured around a three-step user workflow, with each step corresponding to a specific page.
 
-## Expanding the ESLint configuration
+## Application Pages & User Flow
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The user journey is divided into three distinct pages, each with a dedicated purpose.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 1. The Story Creator Page
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+This is the starting point of the creative process, where the user defines the narrative foundation of their story.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+*   **Initial Prompting:** The user provides a high-level text briefing for the story they want to create, along with the desired number of scenes.
+*   **First Draft Generation:** Upon submission, the page communicates with the backend to generate the first text-only draft of the story.
+*   **Story Display:** The generated draft is displayed as a series of scenes, each showing the narrator's text and a character's dialogue.
+*   **Progression:** Once the user is happy with the text, they proceed to the next step.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. The Art Selector Page
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+This page focuses on establishing the visual identity and art direction for the story.
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+*   **Style Generation:** The user can trigger a process where the backend analyzes the story's first scene and generates three distinct art style suggestions, each presented with a preview image.
+*   **Visual Selection:** The three styles are displayed in a grid, allowing the user to see a preview of each look and feel.
+*   **Re-rolling:** If the user is not satisfied with the initial suggestions, they can re-roll to generate three entirely new options.
+*   **Final Choice:** The user must select one of the art styles to serve as the master reference for the entire story before they can generate the final product.
+
+### 3. The Final Story Page
+
+This is the final output screen, where the user sees the culmination of their creative decisions.
+
+*   **Final Product Display:** This page displays the completed, fully illustrated story. It presents each scene with its final, consistently styled image alongside the corresponding narrator and dialogue text.
+*   **Result of Generation:** This view is the result of the final, intensive generation process kicked off on the Art Selector page, where the AI used the chosen reference image to create a unique illustration for every scene.
+*   **Completion and Restart:** After viewing their story, the user is presented with an option to "Create a New Story," which resets the application and takes them back to the Story Creator page to begin a new project.
